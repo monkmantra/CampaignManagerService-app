@@ -16,7 +16,7 @@ client.setup_logging()
 @app.get("/hc/")
 def healthcheck():
     logging.info("Called /hc endpoint.")
-    return {"message": "Health - Not OK"}
+    return {"message": "Health - OK"}
 
 @app.get("/tasks/")
 def get_db_data():
