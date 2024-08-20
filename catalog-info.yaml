@@ -1,0 +1,42 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: CampaignManagerService-app
+  annotations:
+    "backstage.io/project": "png-gcp-learning-poc"
+    "backstage.io/cloud-run": "CampaignManagerService"
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: monkmantra/CampaignManagerService-app
+    sonarqube.org/project-key: ltimindtreeSonarqube/CampaignManagerService
+  links:
+    - url: "https://CampaignManagerService-nraemwfzfa-uk.a.run.app"
+      title: Application URL
+      icon: extension
+    - url: "https://console.cloud.google.com/run/detail/us-east4/CampaignManagerService/logs?project=png-gcp-learning-poc"
+      title: Logs
+      icon: dashboard
+  tags:
+    - de-ims-app
+spec:
+  type: service
+  owner: user:de-ims
+  lifecycle: experimental
+  dependsOn:
+    - component:default/CampaignManagerService-infra
+  providesApis:
+    - CampaignManagerService
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: CampaignManagerService
+  description: The App APIs Specification. Service that help in creating and managing all media campaigns
+  tags:
+    - fastapi
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: user:de-ims
+  definition:
+    $text: ./fastapi.yaml
